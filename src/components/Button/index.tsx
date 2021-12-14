@@ -8,14 +8,14 @@ interface Props {
    variant?: string;
    href?: string;
    target?: string;
-   corner?: string;
+   corner?: 'squared' | 'rounded' | 'pill';
    disabled?: boolean;
    prefix?: any;
    sufix?: any;
    loading?: boolean;
 }
 
-const Button = ({label, onClick, variant = 'primary', corner = 'semiRounded', href, target, disabled, prefix, sufix, loading} : Props) => {
+const Button = ({label, onClick, variant = 'primary', corner = 'rounded', href, target, disabled, prefix, sufix, loading} : Props) => {
    return (
       <S.Wrapper onClick={ onClick } variant={ variant } corner={ corner } disabled={disabled} >
          <a href={ href } target={ target } >
@@ -25,10 +25,13 @@ const Button = ({label, onClick, variant = 'primary', corner = 'semiRounded', hr
                </div>
             }
             { label }
-            { sufix &&
+            { (sufix && !loading) &&
                <div className="ml-2">
                   { sufix }
                </div>
+            }
+            { loading &&
+               <S.Loading className="ml-2" />
             }
          </a>
       </S.Wrapper>

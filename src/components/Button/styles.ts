@@ -1,5 +1,6 @@
-import styled, { css, DefaultTheme, ThemeProps } from 'styled-components'
-import { darken, grayscale } from 'polished'
+import styled, { css, DefaultTheme, ThemeProps, keyframes } from 'styled-components'
+import { darken } from 'polished'
+import { FaSpinner } from 'react-icons/fa'
 
 const getCorner = ( props: ThemeProps<DefaultTheme>, variant: string ) => css`
    border-radius: ${ props => props.theme.corners[variant]};
@@ -55,4 +56,14 @@ export const Wrapper = styled.button<{ variant: string, corner: string; }>`
       ${ props => getVariant(props, props.variant) };
       ${ props => props.disabled === true && DisabledVariant };
    }
+`
+
+const spin = keyframes`
+   to {
+      transform: rotate(360deg);
+   }
+`
+
+export const Loading = styled(FaSpinner)`
+   animation: ${spin} .8s linear infinite;
 `

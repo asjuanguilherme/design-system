@@ -10,8 +10,9 @@ const Index = () => {
         label="Olá Mundo"
         href="https://google.com.br"
         variant="primary"
-        corner="rounded"
+        corner="pill"
         sufix={ <FaHome/> }
+        loading={true}
       />
     </div>
   )
