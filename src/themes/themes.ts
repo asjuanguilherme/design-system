@@ -16,5 +16,12 @@ export const light = {
       background: '#FFFFFF',
       text: '#333333',
       empty: '#EEEEEE',
+      disabled: '#CCCCCC'
    },
+
+   corners: {
+      squared: '0px',
+      rounded: '.5rem',
+      pill: '10rem',
+   }
 }

@@ -1,7 +1,18 @@
+import Button from "../components/Button"
+import { FaHome } from 'react-icons/fa'
+
 const Index = () => {
   return (
-    <div className="text-indigo-400">
-      Olá Mundo... Testing 123
+    <div>
+      <h2>Botões</h2>
+      <br></br>
+      <Button
+        label="Olá Mundo"
+        href="https://google.com.br"
+        variant="primary"
+        corner="rounded"
+        sufix={ <FaHome/> }
+      />
     </div>
   )
 }
