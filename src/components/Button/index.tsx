@@ -12,7 +12,7 @@ interface Props {
    disabled?: boolean;
    prefix?: any;
    sufix?: any;
-   loading: boolean;
+   loading?: boolean;
 }
 
 const Button = ({label, onClick, variant = 'primary', corner = 'semiRounded', href, target, disabled, prefix, sufix, loading} : Props) => {
