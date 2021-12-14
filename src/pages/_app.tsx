@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import '../themes/globals.css'
 import { GlobalStyles } from '../themes/GlobalStyles'
 import { ThemeProvider } from 'styled-components'
 import { light } from '../themes/themes'
