@@ -1,28 +1,43 @@
 import styled, { css, DefaultTheme, ThemeProps, keyframes } from 'styled-components'
 import { darken } from 'polished'
 import { FaSpinner } from 'react-icons/fa'
+import { ReactComponentElement } from 'react'
+
+const filledStyle = (color: string) => css`
+   background-color: ${color};
+   border: 2px solid ${color};
+   color: white;
+
+   &:hover {
+      background-color: ${ props => darken(0.1, color)};
+      border-color: ${ props => darken(0.1, color)};
+   }
+`
+
+const outlinedStyle = (color: string) => css`
+   background-color: transparent;
+   border: 2px solid ${color};
+   color: ${color};
+
+   &:hover {   
+      background-color: ${ color };
+      border-color: ${ color };
+      color: white;
+   }
+`
+
+const getSize = ( props: ThemeProps<DefaultTheme>, size: string ) => css`
+   font-size: ${ props => props.theme.fontSize[size]};
+`
 
 const getCorner = ( props: ThemeProps<DefaultTheme>, variant: string ) => css`
    border-radius: ${ props => props.theme.corners[variant]};
 `
 
-const getVariant = ( props: ThemeProps<DefaultTheme>, variant: string ) => css`
-   background-color: ${ props => props.theme.colors[variant] };
-   border: 2px solid ${ props => props.theme.colors[variant] };
-   color: white;
-   text-decoration: none; 
+const getVariant = ( props: any, variant: string, outlined: boolean ) => css`
+   text-decoration: none;
    
-   //OUTLINED HOVER STYLE
-   /* &:hover {
-      color: ${ props => props.theme.colors[variant] };
-      background-color: white;
-   } */
-   
-   //DARKEN HOVER STYLE
-   &:hover {
-      background-color: ${ props => darken(0.1, props.theme.colors[variant]) };
-      border-color: ${ props => darken(0.1, props.theme.colors[variant]) };
-   }
+   ${ outlined? outlinedStyle(props.theme.colors[variant]) : filledStyle(props.theme.colors[variant]) }
 `
 
 const DisabledVariant = css`
@@ -37,11 +52,10 @@ const DisabledVariant = css`
    }
 `
 
-export const Wrapper = styled.button<{ variant: string, corner: string; }>`
+export const Wrapper = styled.button<{ variant: string, corner: string; size: string, outlined: boolean, icon: boolean }>`
    a {
       user-select: none;
-      padding: 0 1rem;
-      height: 2.5rem;
+      padding: .5em 1.3em;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -51,9 +65,11 @@ export const Wrapper = styled.button<{ variant: string, corner: string; }>`
 
       cursor: pointer;
       transition: .2s;
-
-      ${ props => getCorner(props, props.corner)}
-      ${ props => getVariant(props, props.variant) };
+      
+      ${ props => props.icon? `padding: .5em;` : `` }
+      ${ props => getSize(props, props.size) };
+      ${ props => getCorner(props, props.corner)};
+      ${ props => getVariant(props, props.variant, props.outlined) };
       ${ props => props.disabled === true && DisabledVariant };
    }
 `

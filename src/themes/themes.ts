@@ -23,5 +23,11 @@ export const light = {
       squared: '0px',
       rounded: '.5rem',
       pill: '10rem',
+   },
+
+   fontSize: {
+      small: '.625rem',
+      default: '.875rem',
+      large: '1.125rem',
    }
 }
